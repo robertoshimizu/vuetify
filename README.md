@@ -15,6 +15,7 @@ vue create .
 ```
 vue add vuetify
 ```
+Notice the v-tags in the project, they are part of Vuetify API.
 
 
 
