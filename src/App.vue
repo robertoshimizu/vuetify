@@ -67,6 +67,10 @@ export default {
         label: "About",
         url: "/about",
       },
+      {
+        label: "Dashboard",
+        url: "/dashboard",
+      },
     ],
   }),
 };
