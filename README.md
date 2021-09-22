@@ -17,6 +17,16 @@ vue add vuetify
 ```
 Notice the v-tags in the project, they are part of Vuetify API.
 
+### Vuetify UI Documentation
+
+#### PROPS: They are attributes that are exposed to accept data from the parent component.
+
+<img style="width: 60%" src='./src/assets/appbarAPI.png'>
+
+```html
+<v-app-bar app>
+```
+
 
 
 
