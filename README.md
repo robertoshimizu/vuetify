@@ -26,31 +26,21 @@ Notice the v-tags in the project, they are part of Vuetify API.
 ```html
 <v-app-bar app>
 ```
-
-
-
-
-
-
-
-
-
-
-#### Project setup after cloning from git
+### Install Vue Router
+In order to start navigating through pages, it is time to install a router.
 ```
-yarn install
+vue add router
 ```
-#### Compiles and hot-reloads for development
-```
-yarn serve
-```
-#### Compiles and minifies for production
-```
-yarn build
-```
-#### Lints and fixes files
-```
-yarn lint
-```
-#### Customize configuration
+Don't panic if the installation changes the code, due to boiler plate automatic confir. Use your Version control to discard those changes.
+
+
+
+
+
+
+
+
+
+
+### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
