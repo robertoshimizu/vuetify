@@ -8,6 +8,13 @@ export default {
   name: "About",
 
   components: {},
+  metaInfo: {
+    htmlAttrs: {
+      lang: 'pt-BR',
+    },
+    title: 'About',
+    meta: [{ name: 'descrition', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' }],
+  },
 
   //   data: () => (),
 };
