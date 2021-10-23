@@ -79,90 +79,131 @@
 
         <v-window-item :value="2">
           <v-container>
-            <v-row>
-              <v-col cols="12" md="4">
-                <v-card max-width="250" outlined>
-                  <v-list-item three-line>
-                    <v-list-item-content>
-                      <div class="text-overline mb-4">OVERLINE</div>
-                      <v-list-item-subtitle
-                        >Sou casado ou tenho um relacionamento
-                        estável</v-list-item-subtitle
-                      >
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-card>
-              </v-col>
-              <v-col cols="12" md="4">
-                <v-card max-width="250" outlined>
-                  <v-list-item three-line>
-                    <v-list-item-content>
-                      <div class="text-overline mb-4">OVERLINE</div>
-                      <v-list-item-subtitle
-                        >Tenho crianças menores que 23 anos ou pretendo
-                        ter</v-list-item-subtitle
-                      >
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-card>
-              </v-col>
-              <v-col cols="12" md="4">
-                <v-card max-width="250" outlined>
-                  <v-list-item three-line>
-                    <v-list-item-content>
-                      <div class="text-overline mb-4">OVERLINE</div>
-                      <v-list-item-subtitle
-                        >Sou profissional autônomo</v-list-item-subtitle
-                      >
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-card>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12" md="4">
-                <v-card max-width="250" outlined>
-                  <v-list-item three-line>
-                    <v-list-item-content>
-                      <div class="text-overline mb-4">OVERLINE</div>
-                      <v-list-item-subtitle
-                        >Sou empregado regime CLT</v-list-item-subtitle
-                      >
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-card>
-              </v-col>
-              <v-col cols="12" md="4">
-                <v-card max-width="250" outlined>
-                  <v-list-item three-line>
-                    <v-list-item-content>
-                      <div class="text-overline mb-4">OVERLINE</div>
-                      <v-list-item-subtitle
-                        >Quero cobrir minhas despesas
-                        funerárias</v-list-item-subtitle
-                      >
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-card>
-              </v-col>
-              <v-col cols="12" md="4">
-                <v-card max-width="250" outlined>
-                  <v-list-item three-line>
-                    <v-list-item-content>
-                      <div class="text-overline mb-4">OVERLINE</div>
-                      <v-list-item-subtitle
-                        >Quero planejar minha sucessão</v-list-item-subtitle
-                      >
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-card>
-              </v-col>
-            </v-row>
+            <v-btn-toggle v-model="toggle_exclusive" multiple>
+              <v-row>
+                <v-col cols="12" md="4">
+                  <v-btn>
+                    <v-card max-width="250" outlined>
+                      <v-list-item three-line>
+                        <v-list-item-content>
+                          <div class="text-overline mb-4">OVERLINE</div>
+                          <v-list-item-subtitle
+                            >Sou casado ou tenho um relacionamento
+                            estável</v-list-item-subtitle
+                          >
+                        </v-list-item-content>
+                      </v-list-item>
+                    </v-card>
+                  </v-btn>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <v-card max-width="250" outlined>
+                    <v-list-item three-line>
+                      <v-list-item-content>
+                        <div class="text-overline mb-4">OVERLINE</div>
+                        <v-list-item-subtitle
+                          >Tenho crianças menores que 23 anos ou pretendo
+                          ter</v-list-item-subtitle
+                        >
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-card>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <v-card max-width="250" outlined>
+                    <v-list-item three-line>
+                      <v-list-item-content>
+                        <div class="text-overline mb-4">OVERLINE</div>
+                        <v-list-item-subtitle
+                          >Sou profissional autônomo</v-list-item-subtitle
+                        >
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-card>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12" md="4">
+                  <v-card max-width="250" outlined>
+                    <v-list-item three-line>
+                      <v-list-item-content>
+                        <div class="text-overline mb-4">OVERLINE</div>
+                        <v-list-item-subtitle
+                          >Sou empregado regime CLT</v-list-item-subtitle
+                        >
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-card>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <v-card max-width="250" outlined>
+                    <v-list-item three-line>
+                      <v-list-item-content>
+                        <div class="text-overline mb-4">OVERLINE</div>
+                        <v-list-item-subtitle
+                          >Quero cobrir minhas despesas
+                          funerárias</v-list-item-subtitle
+                        >
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-card>
+                </v-col>
+                <v-col cols="12" md="4">
+                  <v-card max-width="250" outlined>
+                    <v-list-item three-line>
+                      <v-list-item-content>
+                        <div class="text-overline mb-4">OVERLINE</div>
+                        <v-list-item-subtitle
+                          >Quero planejar minha sucessão</v-list-item-subtitle
+                        >
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-btn-toggle>
           </v-container>
         </v-window-item>
 
         <v-window-item :value="3">
-          <div class="pa-4 text-center">
+          <v-container>
+            <v-form>
+              <v-row>
+                <v-col cols="4">
+                  <v-card elevation="0" class="pa-2">
+                    <v-text-field
+                      outlined
+                      v-model="dateFormatted"
+                      label="Data de nascimento"
+                      hint="formato DD/MM/AAAA "
+                      prepend-inner-icon="mdi-calendar"
+                      v-bind="attrs"
+                      @blur="date = parseDate(dateFormatted)"
+                      v-on="on"
+                    ></v-text-field>
+                    <v-text-field
+                      outlined
+                      v-model="renda"
+                      :rules="rendaRules"
+                      label="Renda mensal"
+                      required
+                    ></v-text-field>
+                    <v-text-field
+                      outlined
+                      v-model="renda"
+                      :rules="rendaRules"
+                      label="Profissão"
+                      required
+                    ></v-text-field>
+                  </v-card>
+                </v-col>
+                <v-col cols="8">
+                  <v-card outlined> </v-card>
+                </v-col>
+              </v-row>
+            </v-form>
+          </v-container>
+          <!-- <div class="pa-4 text-center">
             <v-img
               class="mb-4"
               contain
@@ -171,7 +212,7 @@
             ></v-img>
             <h3 class="text-h6 font-weight-light mb-2">Welcome to Vuetify</h3>
             <span class="text-caption grey--text">Thanks for signing up!</span>
-          </div>
+          </div> -->
         </v-window-item>
       </v-window>
 
@@ -185,7 +226,10 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-    <span>{{ radioGroup }}</span>
+    <v-container>
+      <p>Radio Group: {{ radioGroup }}</p>
+      <p>Model: {{ toggle_exclusive }}</p>
+    </v-container>
   </v-container>
 </template>
 <script>
@@ -194,6 +238,7 @@ export default {
   data: () => ({
     step: 1,
     radioGroup: null,
+    toggle_exclusive: [],
   }),
 
   computed: {
@@ -204,7 +249,7 @@ export default {
         case 2:
           return "Um pouco sobre você";
         default:
-          return "Account created";
+          return "Por último, alguns dados básicos";
       }
     },
   },
