@@ -1,6 +1,6 @@
 <template>
   <v-container class="mt-10">
-    <v-card class="mx-auto" width="800" height="330">
+    <v-card class="mx-auto" width="800" height="auto">
       <v-card-title class="text-h6 font-weight-regular justify-space-between">
         <span>{{ currentTitle }}</span>
         <v-avatar
@@ -10,9 +10,74 @@
           v-text="step"
         ></v-avatar>
       </v-card-title>
-
       <v-window v-model="step">
         <v-window-item :value="1">
+          <v-container>
+            <v-radio-group v-model="radioGroup">
+              <v-row>
+                <v-col cols="12" sm="4">
+                  <v-card max-width="250" outlined>
+                    <v-list-item three-line>
+                      <v-list-item-content>
+                        <div class="text-overline mb-4">OVERLINE</div>
+                        <v-list-item-title class="text-h6 mb-1">
+                          Iniciando a jornada
+                        </v-list-item-title>
+                        <v-list-item-subtitle
+                          >Ainda estou decidindo se eu preciso de
+                          seguro</v-list-item-subtitle
+                        >
+                      </v-list-item-content>
+                    </v-list-item>
+                    <v-card-actions>
+                      <v-radio class="mx-auto" value="1"></v-radio>
+                    </v-card-actions>
+                  </v-card>
+                </v-col>
+                <v-col cols="12" sm="4">
+                  <v-card max-width="250" outlined>
+                    <v-list-item three-line>
+                      <v-list-item-content>
+                        <div class="text-overline mb-4">OVERLINE</div>
+                        <v-list-item-title class="text-h6 mb-1">
+                          Comparando preços
+                        </v-list-item-title>
+                        <v-list-item-subtitle
+                          >Estou fazendo pesquisa e comparando
+                          preços</v-list-item-subtitle
+                        >
+                      </v-list-item-content>
+                    </v-list-item>
+                    <v-card-actions>
+                      <v-radio class="mx-auto" value="2"></v-radio>
+                    </v-card-actions>
+                  </v-card>
+                </v-col>
+                <v-col cols="12" sm="4">
+                  <v-card max-width="250" outlined>
+                    <v-list-item three-line>
+                      <v-list-item-content>
+                        <div class="text-overline mb-4">OVERLINE</div>
+                        <v-list-item-title class="text-h6 mb-1">
+                          Pronto para contratar
+                        </v-list-item-title>
+                        <v-list-item-subtitle
+                          >Já sei o que quero: pronto para
+                          contratar</v-list-item-subtitle
+                        >
+                      </v-list-item-content>
+                    </v-list-item>
+                    <v-card-actions>
+                      <v-radio class="mx-auto" value="3"></v-radio>
+                    </v-card-actions>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-radio-group>
+          </v-container>
+        </v-window-item>
+
+        <v-window-item :value="2">
           <v-container>
             <v-row>
               <v-col cols="12" md="4">
@@ -20,18 +85,12 @@
                   <v-list-item three-line>
                     <v-list-item-content>
                       <div class="text-overline mb-4">OVERLINE</div>
-                      <v-list-item-title class="text-h5 mb-1">
-                        Headline 5
-                      </v-list-item-title>
                       <v-list-item-subtitle
-                        >Greyhound divisely hello coldly
-                        fonwderfully</v-list-item-subtitle
+                        >Sou casado ou tenho um relacionamento
+                        estável</v-list-item-subtitle
                       >
                     </v-list-item-content>
                   </v-list-item>
-                  <v-card-actions>
-                    <v-btn outlined rounded text> Button </v-btn>
-                  </v-card-actions>
                 </v-card>
               </v-col>
               <v-col cols="12" md="4">
@@ -39,18 +98,12 @@
                   <v-list-item three-line>
                     <v-list-item-content>
                       <div class="text-overline mb-4">OVERLINE</div>
-                      <v-list-item-title class="text-h5 mb-1">
-                        Headline 5
-                      </v-list-item-title>
                       <v-list-item-subtitle
-                        >Greyhound divisely hello coldly
-                        fonwderfully</v-list-item-subtitle
+                        >Tenho crianças menores que 23 anos ou pretendo
+                        ter</v-list-item-subtitle
                       >
                     </v-list-item-content>
                   </v-list-item>
-                  <v-card-actions>
-                    <v-btn outlined rounded text> Button </v-btn>
-                  </v-card-actions>
                 </v-card>
               </v-col>
               <v-col cols="12" md="4">
@@ -58,35 +111,54 @@
                   <v-list-item three-line>
                     <v-list-item-content>
                       <div class="text-overline mb-4">OVERLINE</div>
-                      <v-list-item-title class="text-h5 mb-1">
-                        Headline 5
-                      </v-list-item-title>
                       <v-list-item-subtitle
-                        >Greyhound divisely hello coldly
-                        fonwderfully</v-list-item-subtitle
+                        >Sou profissional autônomo</v-list-item-subtitle
                       >
                     </v-list-item-content>
                   </v-list-item>
-                  <v-card-actions>
-                    <v-btn outlined rounded text> Button </v-btn>
-                  </v-card-actions>
+                </v-card>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" md="4">
+                <v-card max-width="250" outlined>
+                  <v-list-item three-line>
+                    <v-list-item-content>
+                      <div class="text-overline mb-4">OVERLINE</div>
+                      <v-list-item-subtitle
+                        >Sou empregado regime CLT</v-list-item-subtitle
+                      >
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-card>
+              </v-col>
+              <v-col cols="12" md="4">
+                <v-card max-width="250" outlined>
+                  <v-list-item three-line>
+                    <v-list-item-content>
+                      <div class="text-overline mb-4">OVERLINE</div>
+                      <v-list-item-subtitle
+                        >Quero cobrir minhas despesas
+                        funerárias</v-list-item-subtitle
+                      >
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-card>
+              </v-col>
+              <v-col cols="12" md="4">
+                <v-card max-width="250" outlined>
+                  <v-list-item three-line>
+                    <v-list-item-content>
+                      <div class="text-overline mb-4">OVERLINE</div>
+                      <v-list-item-subtitle
+                        >Quero planejar minha sucessão</v-list-item-subtitle
+                      >
+                    </v-list-item-content>
+                  </v-list-item>
                 </v-card>
               </v-col>
             </v-row>
           </v-container>
-        </v-window-item>
-
-        <v-window-item :value="2">
-          <v-card-text>
-            <v-text-field label="Password" type="password"></v-text-field>
-            <v-text-field
-              label="Confirm Password"
-              type="password"
-            ></v-text-field>
-            <span class="text-caption grey--text text--darken-1">
-              Please enter a password for your account
-            </span>
-          </v-card-text>
         </v-window-item>
 
         <v-window-item :value="3">
@@ -106,13 +178,14 @@
       <v-divider></v-divider>
 
       <v-card-actions>
-        <v-btn :disabled="step === 1" text @click="step--"> Back </v-btn>
+        <v-btn :disabled="step === 1" text @click="step--"> Anterior </v-btn>
         <v-spacer></v-spacer>
         <v-btn :disabled="step === 3" color="primary" depressed @click="step++">
-          Next
+          Próximo
         </v-btn>
       </v-card-actions>
     </v-card>
+    <span>{{ radioGroup }}</span>
   </v-container>
 </template>
 <script>
@@ -120,6 +193,7 @@ export default {
   name: "Questions",
   data: () => ({
     step: 1,
+    radioGroup: null,
   }),
 
   computed: {
@@ -128,7 +202,7 @@ export default {
         case 1:
           return "Vamos Começar";
         case 2:
-          return "Create a password";
+          return "Um pouco sobre você";
         default:
           return "Account created";
       }
@@ -136,12 +210,3 @@ export default {
   },
 };
 </script>
-<!-- <v-card-text>
-              <v-text-field
-                label="Email"
-                value="john@vuetifyjs.com"
-              ></v-text-field>
-              <span class="text-caption grey--text text--darken-1">
-                This is the email you will use to login to your Vuetify account
-              </span>
-            </v-card-text> -->
