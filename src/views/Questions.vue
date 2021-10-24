@@ -344,7 +344,7 @@
           </v-btn>
         </div>
         <div v-else>
-          <v-btn color="error"> calcular</v-btn>
+          <v-btn to="/calculo" color="error"> calcular</v-btn>
         </div>
       </v-card-actions>
     </v-card>
