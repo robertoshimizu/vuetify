@@ -3,8 +3,19 @@ import App from "./App.vue";
 import vuetify from "./plugins/vuetify";
 import router from "./router";
 import VueMeta from 'vue-meta';
+import VCurrencyField from 'v-currency-field'
 
 Vue.config.productionTip = false;
+Vue.use(VCurrencyField, {
+  locale: 'pt-BR',
+  decimalLength: 2,
+  autoDecimalMode: true,
+  min: null,
+  max: null,
+  defaultValue: 0,
+  valueAsInteger: false,
+  allowNegative: true
+})
 
 new Vue({
   vuetify,
