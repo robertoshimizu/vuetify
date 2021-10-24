@@ -13,7 +13,7 @@
       <v-window v-model="step">
         <v-window-item :value="1">
           <v-container>
-            <v-radio-group v-model="radioGroup">
+            <v-radio-group v-model="purpose">
               <v-row>
                 <v-col cols="12" sm="4">
                   <v-card max-width="250" outlined>
@@ -79,89 +79,135 @@
 
         <v-window-item :value="2">
           <v-container>
-            <v-btn-toggle v-model="toggle_exclusive" multiple>
-              <v-row>
-                <v-col cols="12" md="4">
-                  <v-btn>
-                    <v-card max-width="250" outlined>
-                      <v-list-item three-line>
-                        <v-list-item-content>
-                          <div class="text-overline mb-4">OVERLINE</div>
-                          <v-list-item-subtitle
-                            >Sou casado ou tenho um relacionamento
-                            estável</v-list-item-subtitle
-                          >
-                        </v-list-item-content>
-                      </v-list-item>
-                    </v-card>
-                  </v-btn>
-                </v-col>
-                <v-col cols="12" md="4">
-                  <v-card max-width="250" outlined>
+            <v-row>
+              <v-col cols="12" md="4">
+                <v-hover>
+                  <v-card max-width="250" min-height="120" outlined>
                     <v-list-item three-line>
                       <v-list-item-content>
-                        <div class="text-overline mb-4">OVERLINE</div>
+                        <v-card-actions>
+                          <v-checkbox
+                            class="mx-auto"
+                            v-model="selected"
+                            color="red"
+                            value="casado"
+                            hide-details
+                          ></v-checkbox>
+                        </v-card-actions>
                         <v-list-item-subtitle
-                          >Tenho crianças menores que 23 anos ou pretendo
-                          ter</v-list-item-subtitle
+                          >Sou casado ou tenho um relacionamento
+                          estável</v-list-item-subtitle
                         >
                       </v-list-item-content>
                     </v-list-item>
                   </v-card>
-                </v-col>
-                <v-col cols="12" md="4">
-                  <v-card max-width="250" outlined>
-                    <v-list-item three-line>
-                      <v-list-item-content>
-                        <div class="text-overline mb-4">OVERLINE</div>
-                        <v-list-item-subtitle
-                          >Sou profissional autônomo</v-list-item-subtitle
-                        >
-                      </v-list-item-content>
-                    </v-list-item>
-                  </v-card>
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col cols="12" md="4">
-                  <v-card max-width="250" outlined>
-                    <v-list-item three-line>
-                      <v-list-item-content>
-                        <div class="text-overline mb-4">OVERLINE</div>
-                        <v-list-item-subtitle
-                          >Sou empregado regime CLT</v-list-item-subtitle
-                        >
-                      </v-list-item-content>
-                    </v-list-item>
-                  </v-card>
-                </v-col>
-                <v-col cols="12" md="4">
-                  <v-card max-width="250" outlined>
-                    <v-list-item three-line>
-                      <v-list-item-content>
-                        <div class="text-overline mb-4">OVERLINE</div>
-                        <v-list-item-subtitle
-                          >Quero cobrir minhas despesas
-                          funerárias</v-list-item-subtitle
-                        >
-                      </v-list-item-content>
-                    </v-list-item>
-                  </v-card>
-                </v-col>
-                <v-col cols="12" md="4">
-                  <v-card max-width="250" outlined>
-                    <v-list-item three-line>
-                      <v-list-item-content>
-                        <div class="text-overline mb-4">OVERLINE</div>
-                        <v-list-item-subtitle
-                          >Quero planejar minha sucessão</v-list-item-subtitle
-                        >
-                      </v-list-item-content>
-                    </v-list-item>
-                  </v-card>
-                </v-col>
-              </v-row>
-            </v-btn-toggle>
+                </v-hover>
+              </v-col>
+              <v-col cols="12" md="4">
+                <v-card max-width="250" min-height="120" outlined>
+                  <v-list-item three-line>
+                    <v-list-item-content>
+                      <v-card-actions>
+                        <v-checkbox
+                          class="mx-auto"
+                          v-model="selected"
+                          color="red"
+                          value="dependentes"
+                          hide-details
+                        ></v-checkbox>
+                      </v-card-actions>
+                      <v-list-item-subtitle
+                        >Tenho dependentes menores que 23
+                        anos</v-list-item-subtitle
+                      >
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-card>
+              </v-col>
+              <v-col cols="12" md="4">
+                <v-card max-width="250" min-height="120" outlined>
+                  <v-list-item three-line>
+                    <v-list-item-content>
+                      <v-card-actions>
+                        <v-checkbox
+                          class="mx-auto"
+                          v-model="selected"
+                          color="red"
+                          value="autonomo"
+                          hide-details
+                        ></v-checkbox>
+                      </v-card-actions>
+                      <v-list-item-subtitle
+                        >Sou profissional autônomo</v-list-item-subtitle
+                      >
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-card>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" md="4">
+                <v-card max-width="250" min-height="120" outlined>
+                  <v-list-item three-line>
+                    <v-list-item-content>
+                      <v-card-actions>
+                        <v-checkbox
+                          class="mx-auto"
+                          v-model="selected"
+                          color="red"
+                          value="empregado"
+                          hide-details
+                        ></v-checkbox>
+                      </v-card-actions>
+                      <v-list-item-subtitle
+                        >Sou empregado regime CLT</v-list-item-subtitle
+                      >
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-card>
+              </v-col>
+              <v-col cols="12" md="4">
+                <v-card max-width="250" min-height="120" outlined>
+                  <v-list-item three-line>
+                    <v-list-item-content>
+                      <v-card-actions>
+                        <v-checkbox
+                          class="mx-auto"
+                          v-model="selected"
+                          color="red"
+                          value="funerario"
+                          hide-details
+                        ></v-checkbox>
+                      </v-card-actions>
+                      <v-list-item-subtitle
+                        >Quero cobrir minhas despesas
+                        funerárias</v-list-item-subtitle
+                      >
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-card>
+              </v-col>
+              <v-col cols="12" md="4">
+                <v-card max-width="250" min-height="120" outlined>
+                  <v-list-item three-line>
+                    <v-list-item-content>
+                      <v-card-actions>
+                        <v-checkbox
+                          class="mx-auto"
+                          v-model="selected"
+                          color="red"
+                          value="sucessao"
+                          hide-details
+                        ></v-checkbox>
+                      </v-card-actions>
+                      <v-list-item-subtitle
+                        >Quero planejar minha sucessão</v-list-item-subtitle
+                      >
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-card>
+              </v-col>
+            </v-row>
           </v-container>
         </v-window-item>
 
@@ -190,7 +236,7 @@
                     ></v-text-field>
                     <v-text-field
                       outlined
-                      v-model="renda"
+                      v-model="profissao"
                       :rules="rendaRules"
                       label="Profissão"
                       required
@@ -198,7 +244,73 @@
                   </v-card>
                 </v-col>
                 <v-col cols="8">
-                  <v-card outlined> </v-card>
+                  <v-card elevation="0" class="pa-2">
+                    <v-combobox
+                      v-model="select"
+                      :items="numdep"
+                      label="Número de dependentes"
+                      clearable
+                      outlined
+                    ></v-combobox>
+                    <v-row>
+                      <v-col cols="4">
+                        <v-text-field
+                          outlined
+                          v-model="age1"
+                          :rules="rendaRules"
+                          label="Idade"
+                          required
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="4">
+                        <v-text-field
+                          outlined
+                          v-model="age2"
+                          :rules="rendaRules"
+                          label="Idade"
+                          required
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="4">
+                        <v-text-field
+                          outlined
+                          v-model="age3"
+                          :rules="rendaRules"
+                          label="Idade"
+                          required
+                        ></v-text-field>
+                      </v-col>
+                    </v-row>
+                    <v-row>
+                      <v-col cols="4">
+                        <v-text-field
+                          outlined
+                          v-model="age4"
+                          :rules="rendaRules"
+                          label="Idade"
+                          required
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="4">
+                        <v-text-field
+                          outlined
+                          v-model="age5"
+                          :rules="rendaRules"
+                          label="Idade"
+                          required
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="4">
+                        <v-text-field
+                          outlined
+                          v-model="age6"
+                          :rules="rendaRules"
+                          label="Idade"
+                          required
+                        ></v-text-field>
+                      </v-col>
+                    </v-row>
+                  </v-card>
                 </v-col>
               </v-row>
             </v-form>
@@ -221,14 +333,25 @@
       <v-card-actions>
         <v-btn :disabled="step === 1" text @click="step--"> Anterior </v-btn>
         <v-spacer></v-spacer>
-        <v-btn :disabled="step === 3" color="primary" depressed @click="step++">
-          Próximo
-        </v-btn>
+        <div v-if="step < 3">
+          <v-btn
+            :disabled="step === 3"
+            color="primary"
+            depressed
+            @click="step++"
+          >
+            Próximo
+          </v-btn>
+        </div>
+        <div v-else>
+          <v-btn color="error"> calcular</v-btn>
+        </div>
       </v-card-actions>
     </v-card>
     <v-container>
-      <p>Radio Group: {{ radioGroup }}</p>
+      <p>Objetivo: {{ purpose }}</p>
       <p>Model: {{ toggle_exclusive }}</p>
+      <p>Options: {{ selected }}</p>
     </v-container>
   </v-container>
 </template>
@@ -237,8 +360,11 @@ export default {
   name: "Questions",
   data: () => ({
     step: 1,
-    radioGroup: null,
+    purpose: null,
+    marital: false,
     toggle_exclusive: [],
+    selected: [],
+    numdep: [1, 2, 3, 4, 5, 6],
   }),
 
   computed: {
