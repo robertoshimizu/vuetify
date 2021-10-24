@@ -17,10 +17,10 @@
           {{ link.label }}
         </v-btn>
       </v-app-bar>
-      <v-content>
+      <v-main>
         <!-- different pages comes here controlled by the router -->
         <router-view></router-view>
-      </v-content>
+      </v-main>
       <!-- Footer -->
       <v-footer padless color="primary lighten-1" dark class="mt-5">
         <v-row justify="center" no-gutters>

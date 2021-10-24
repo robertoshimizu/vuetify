@@ -219,25 +219,21 @@
                   <v-card elevation="0" class="pa-2">
                     <v-text-field
                       outlined
-                      v-model="dateFormatted"
+                      v-model="date"
                       label="Data de nascimento"
                       hint="formato DD/MM/AAAA "
                       prepend-inner-icon="mdi-calendar"
-                      v-bind="attrs"
                       @blur="date = parseDate(dateFormatted)"
-                      v-on="on"
                     ></v-text-field>
                     <v-text-field
                       outlined
                       v-model="renda"
-                      :rules="rendaRules"
                       label="Renda mensal"
                       required
                     ></v-text-field>
                     <v-text-field
                       outlined
                       v-model="profissao"
-                      :rules="rendaRules"
                       label="Profissão"
                       required
                     ></v-text-field>
@@ -246,7 +242,7 @@
                 <v-col cols="8">
                   <v-card elevation="0" class="pa-2">
                     <v-combobox
-                      v-model="select"
+                      v-model="numdep"
                       :items="numdep"
                       label="Número de dependentes"
                       clearable
@@ -257,7 +253,6 @@
                         <v-text-field
                           outlined
                           v-model="age1"
-                          :rules="rendaRules"
                           label="Idade"
                           required
                         ></v-text-field>
@@ -266,7 +261,6 @@
                         <v-text-field
                           outlined
                           v-model="age2"
-                          :rules="rendaRules"
                           label="Idade"
                           required
                         ></v-text-field>
@@ -275,7 +269,6 @@
                         <v-text-field
                           outlined
                           v-model="age3"
-                          :rules="rendaRules"
                           label="Idade"
                           required
                         ></v-text-field>
@@ -286,7 +279,6 @@
                         <v-text-field
                           outlined
                           v-model="age4"
-                          :rules="rendaRules"
                           label="Idade"
                           required
                         ></v-text-field>
@@ -295,7 +287,6 @@
                         <v-text-field
                           outlined
                           v-model="age5"
-                          :rules="rendaRules"
                           label="Idade"
                           required
                         ></v-text-field>
@@ -304,7 +295,6 @@
                         <v-text-field
                           outlined
                           v-model="age6"
-                          :rules="rendaRules"
                           label="Idade"
                           required
                         ></v-text-field>
@@ -364,7 +354,16 @@ export default {
     marital: false,
     toggle_exclusive: [],
     selected: [],
+    date: null,
+    renda: null,
+    profissao: null,
     numdep: [1, 2, 3, 4, 5, 6],
+    age1: null,
+    age2: null,
+    age3: null,
+    age4: null,
+    age5: null,
+    age6: null,
   }),
 
   computed: {
