@@ -4,6 +4,7 @@ import vuetify from "./plugins/vuetify";
 import router from "./router";
 import VueMeta from 'vue-meta';
 import VCurrencyField from 'v-currency-field'
+import Client from './model/client'
 
 Vue.config.productionTip = false;
 Vue.use(VCurrencyField, {
@@ -23,3 +24,5 @@ new Vue({
   VueMeta,
   render: (h) => h(App),
 }).$mount("#app");
+
+Vue.prototype.$Client = new Client('John', "Doe");

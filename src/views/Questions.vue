@@ -243,63 +243,25 @@
                   <v-card elevation="0" class="pa-2">
                     <v-combobox
                       v-model="numdep"
-                      :items="numdep"
-                      label="Número de dependentes"
-                      clearable
+                      auto-select-first
+                      :items="arraydep"
+                      label="Número de dependentes"                   
+                      
                       outlined
                     ></v-combobox>
-                    <v-row>
-                      <v-col cols="4">
+                    <v-row class="d-flex flex-wrap">
+
                         <v-text-field
+                        v-for="n in numdep"
+                        :key="n"
                           outlined
-                          v-model="age1"
+                          v-model=dep[n]
                           label="Idade"
                           required
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="4">
-                        <v-text-field
-                          outlined
-                          v-model="age2"
-                          label="Idade"
-                          required
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="4">
-                        <v-text-field
-                          outlined
-                          v-model="age3"
-                          label="Idade"
-                          required
-                        ></v-text-field>
-                      </v-col>
-                    </v-row>
-                    <v-row>
-                      <v-col cols="4">
-                        <v-text-field
-                          outlined
-                          v-model="age4"
-                          label="Idade"
-                          required
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="4">
-                        <v-text-field
-                          outlined
-                          v-model="age5"
-                          label="Idade"
-                          required
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="4">
-                        <v-text-field
-                          outlined
-                          v-model="age6"
-                          label="Idade"
-                          required
-                        ></v-text-field>
-                      </v-col>
-                    </v-row>
+                          tile
+                        ></v-text-field>  
+
+                    </v-row>                                     
                   </v-card>
                 </v-col>
               </v-row>
@@ -341,14 +303,20 @@
     <v-container>
       <p>Objetivo: {{ purpose }}</p>
       <p>Model: {{ toggle_exclusive }}</p>
-      <p>Options: {{ selected }}</p>
+      <p>Options: {{ dep }}</p>
+      <p>Options: {{ this.cliente }}</p>
     </v-container>
   </v-container>
 </template>
 <script>
+import Cliente from '../model/client';
+
+
 export default {
   name: "Questions",
   data: () => ({
+    cliente:'',
+    
     step: 1,
     purpose: null,
     marital: false,
@@ -357,14 +325,16 @@ export default {
     date: null,
     renda: null,
     profissao: null,
-    numdep: [1, 2, 3, 4, 5, 6],
-    age1: null,
-    age2: null,
-    age3: null,
-    age4: null,
-    age5: null,
-    age6: null,
+    numdep:0,
+    arraydep: [0, 1, 2, 3, 4, 5, 6],
+    dep:[]
   }),
+
+  created:function() {
+  const cliente = new Cliente('Jane', 'Wilson');
+  console.log(cliente);
+  this.cliente = cliente.getFullName();
+  },
 
   computed: {
     currentTitle() {
