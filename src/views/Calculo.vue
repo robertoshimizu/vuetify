@@ -145,35 +145,60 @@ export default {
       profile: ["casado", "dependentes", "autonomo", "sucessao", "funerario"],
       dependentes: ["8", "6"],
     },
-    coberturas: [
-      {
-        name: "morte",
-        limite: 159,
-      },
-      {
-        name: "invalidez permanente total",
-        limite: 237,
-      },
-      {
-        name: "doenças críticas",
-        limite: 159,
-      },
-      {
-        name: "diária de incapacidade temporária",
-        limite: 237,
-      },
-      {
-        name: "despesas funerárias individual",
-        limite: 237,
-      },
-    ],
+    coberturas: null,
   }),
+  watch: {
+    bpm() {
+      this.recalculo(this.bpm);
+    },
+  },
   methods: {
     decrement() {
       this.bpm--;
     },
     increment() {
       this.bpm++;
+    },
+    recalculo(vida) {
+      const coverages = [
+        "morte",
+        "invalidez permanente total",
+        "doenças críticas",
+        "diária de incapacidade temporária",
+        "despesas funerárias individual",
+      ];
+
+      var arreio = [];
+      for (let i = 0; i < coverages.length; i++) {
+        const expr = coverages[i];
+        var obj = {};
+        obj["name"] = coverages[i];
+        switch (expr) {
+          case "morte":
+            obj["limite"] = vida;
+            arreio.push(obj);
+            break;
+          case "invalidez permanente total":
+            obj["limite"] = vida;
+            arreio.push(obj);
+            break;
+          case "doenças críticas":
+            obj["limite"] = 50000;
+            arreio.push(obj);
+            break;
+          case "diária de incapacidade temporária":
+            obj["limite"] = 1000;
+            arreio.push(obj);
+            break;
+          case "despesas funerárias individual":
+            obj["limite"] = 5000;
+            arreio.push(obj);
+            break;
+          default:
+            console.log(`Sorry, we are out of ${expr}.`);
+        }
+      }
+      this.coberturas = arreio;
     },
   },
   created() {
@@ -190,10 +215,7 @@ export default {
 
     let foo = taxa.find((el) => el.idade === ref);
     console.log("Idade: " + ref + "   Taxa: " + foo.M);
-    this.bpm = new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    }).format(this.bpm);
+    this.recalculo(this.bpm);
   },
 };
 // 1 - Calculo da cobertura: {{ bpm }}</li>
