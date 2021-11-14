@@ -151,21 +151,21 @@ export default {
         index: 1,
         seguradora: "A",
         duration: "Vitalicio",
-        price: "65",
+        price: 65,
         coberturas: ["morte"],
       },
       {
         index: 2,
         seguradora: "C",
         duration: "10",
-        price: "143",
+        price: 143,
         coberturas: ["morte", "invalidez permanente total"],
       },
       {
         index: 3,
         seguradora: "A",
         duration: "Vitalicio",
-        price: "185",
+        price: 185,
         coberturas: [
           "morte",
           "invalidez permanente total",
@@ -175,7 +175,7 @@ export default {
       {
         index: 4,
         duration: "Vitalicio",
-        price: "202",
+        price: 202,
         coberturas: [
           "morte",
           "invalidez permanente total",
@@ -187,7 +187,7 @@ export default {
         index: 5,
         seguradora: "E",
         duration: "Vitalicio",
-        price: "253",
+        price: 253,
         coberturas: [
           "morte",
           "invalidez permanente total",
@@ -199,7 +199,7 @@ export default {
         index: 6,
         seguradora: "B",
         duration: "Vitalicio",
-        price: "253",
+        price: 305,
         coberturas: [
           "morte",
           "invalidez permanente total",

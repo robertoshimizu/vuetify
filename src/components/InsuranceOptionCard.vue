@@ -27,8 +27,15 @@
     </v-row>
     <v-divider></v-divider>
     <div style="padding: 1rem">
-      <v-row class="d-flex flex-row body-2 justify-space-between">
-        <p v-for="(item, index) in product.coberturas" :key="index">
+      <v-row
+        class="
+          d-flex
+          flex-column flex-wrap flex-shrink-1
+          body-2
+          justify-space-between
+        "
+      >
+        <p v-for="item in product.coberturas" :key="item.price">
           {{ item }}
         </p>
       </v-row>
