@@ -245,23 +245,20 @@
                       v-model="numdep"
                       auto-select-first
                       :items="arraydep"
-                      label="Número de dependentes"                   
-                      
+                      label="Número de dependentes"
                       outlined
                     ></v-combobox>
                     <v-row class="d-flex flex-wrap">
-
-                        <v-text-field
+                      <v-text-field
                         v-for="n in numdep"
                         :key="n"
-                          outlined
-                          v-model=dep[n]
-                          label="Idade"
-                          required
-                          tile
-                        ></v-text-field>  
-
-                    </v-row>                                     
+                        outlined
+                        v-model="dep[n]"
+                        label="Idade"
+                        required
+                        tile
+                      ></v-text-field>
+                    </v-row>
                   </v-card>
                 </v-col>
               </v-row>
@@ -309,14 +306,13 @@
   </v-container>
 </template>
 <script>
-import Cliente from '../model/client';
-
+import Cliente from "../model/client";
 
 export default {
   name: "Questions",
   data: () => ({
-    cliente:'',
-    
+    cliente: "",
+
     step: 1,
     purpose: null,
     marital: false,
@@ -325,15 +321,15 @@ export default {
     date: null,
     renda: null,
     profissao: null,
-    numdep:0,
+    numdep: 0,
     arraydep: [0, 1, 2, 3, 4, 5, 6],
-    dep:[]
+    dep: [],
   }),
 
-  created:function() {
-  const cliente = new Cliente('Jane', 'Wilson');
-  console.log(cliente);
-  this.cliente = cliente.getFullName();
+  created: function () {
+    const cliente = new Cliente("Jane", "Wilson");
+    console.log(cliente);
+    this.cliente = cliente.getFullName();
   },
 
   computed: {

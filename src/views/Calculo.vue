@@ -154,33 +154,29 @@ import lifeCoverage from "../data/lifeCoverage.json";
 import LifeCoverageGraph from "../components/LifeCoverageGraph";
 import seguradoraXPTO from "../data/seguradoraXPTO.json";
 
-function custoEduc(renda){  
-    if ((renda > 2000) & (renda < 6000)) {
-      return 1475 * 12;
-    }
-    else if ((renda >= 6000) & (renda < 25000)) {
-      return 3435.14 * 12;
-    }
-    else if (renda >= 25000) {
-      return 7246.38 * 12;
-    }
-    else return null;  
+function custoEduc(renda) {
+  if ((renda > 2000) & (renda < 6000)) {
+    return 1475 * 12;
+  } else if ((renda >= 6000) & (renda < 25000)) {
+    return 3435.14 * 12;
+  } else if (renda >= 25000) {
+    return 7246.38 * 12;
+  } else return null;
 }
 
-function coberturaVida(customerData, custoAnual){
+function coberturaVida(customerData, custoAnual) {
   const profiles = customerData.profile;
-    let coberturaVida = 0;
-    if (profiles.includes("dependentes")) {
-      const dependentes = customerData.dependentes;
-      if (dependentes.length > 0) {
-        dependentes.forEach((dep) => {
-          coberturaVida = coberturaVida + (23 - parseInt(dep)) * custoAnual;
-        });
-        return coberturaVida; 
-      }
-      return parseInt(customerData.renda) * 24;           
+  let coberturaVida = 0;
+  if (profiles.includes("dependentes")) {
+    const dependentes = customerData.dependentes;
+    if (dependentes.length > 0) {
+      dependentes.forEach((dep) => {
+        coberturaVida = coberturaVida + (23 - parseInt(dep)) * custoAnual;
+      });
+      return coberturaVida;
     }
-    else return parseInt(customerData.renda) * 24;
+    return parseInt(customerData.renda) * 24;
+  } else return parseInt(customerData.renda) * 24;
 }
 
 export default {
@@ -197,7 +193,7 @@ export default {
     // Receber via prop do componente anterior - questions.vue
     customerData: {
       nome: "John Doe",
-      sexo:"masculino",
+      sexo: "masculino",
       idade: "46",
       renda: "17000",
       profissao: "gerente comercial",
@@ -216,15 +212,15 @@ export default {
   created() {
     console.log(this.customerData.sexo);
     const renda = parseInt(this.customerData.renda);
-    
-    const custoAnual = custoEduc(renda);       
+
+    const custoAnual = custoEduc(renda);
     this.bpm = coberturaVida(this.customerData, custoAnual);
     this.vidaCalculado = this.bpm;
-   
+
     // gerar um csv ou json com dados para plotar grafico
     let taxa = this.tabelaSeg[0].taxas;
     let ref = this.customerData.idade;
-    
+
     let foo = taxa.find((el) => el.idade === ref);
     console.log("Idade: " + ref + "   Taxa: " + foo.M);
   },
@@ -235,10 +231,4 @@ export default {
 // 4- Mostrar opções de preços e coberturas</li>
 
 // Foram removidos atributos com mencoes a metodos - date format "on" e
-
-
 </script>
-
-
-
-

@@ -10,10 +10,15 @@ export default {
   components: {},
   metaInfo: {
     htmlAttrs: {
-      lang: 'pt-BR',
+      lang: "pt-BR",
     },
-    title: 'About',
-    meta: [{ name: 'descrition', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' }],
+    title: "About",
+    meta: [
+      {
+        name: "descrition",
+        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      },
+    ],
   },
 
   //   data: () => (),
