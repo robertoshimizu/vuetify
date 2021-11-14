@@ -52,37 +52,37 @@
                     <v-icon @click="increment"> mdi-plus </v-icon>
                   </template></v-slider
                 >
-                <h4>Coberturas básicas:</h4>
-                <ul>
-                  <li>
-                    morte: <span>{{ bpm }}</span>
-                  </li>
-                  <li>
-                    invalidez permanente total:
-                    <span>{{
-                      new Intl.NumberFormat("pt-BR", {
-                        style: "currency",
-                        currency: "BRL",
-                      }).format(this.bpm)
-                    }}</span>
-                  </li>
-                </ul>
-                <h4>Coberturas complementares:</h4>
-                <ul>
-                  <li>
-                    incapacidade temporal: diária de incapacidade, diária por
-                    hospitalização ou renda por incapacidade
-                  </li>
-                  <li>doenças críticas</li>
-                  <li>despesas funerárias</li>
-                </ul>
+
+                <v-simple-table dense>
+                  <template v-slot:default>
+                    <thead>
+                      <tr>
+                        <th class="text-left">Cobertura</th>
+                        <th class="text-left">Limite</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="item in coberturas" :key="item.name">
+                        <td>{{ item.name }}</td>
+                        <td>
+                          {{
+                            new Intl.NumberFormat("pt-BR", {
+                              style: "currency",
+                              currency: "BRL",
+                            }).format(item.limite)
+                          }}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </template>
+                </v-simple-table>
               </v-card>
               <LifeCoverageGraph :coverage="lifeCoverage" class="mt-3" />
             </v-col>
             <v-col cols="12" md="6">
-               <OptionCard />
-                <OptionCard />
-                 <OptionCard />
+              <OptionCard />
+              <OptionCard />
+              <OptionCard />
             </v-col>
           </v-row>
         </v-container>
@@ -145,6 +145,28 @@ export default {
       profile: ["casado", "dependentes", "autonomo", "sucessao", "funerario"],
       dependentes: ["8", "6"],
     },
+    coberturas: [
+      {
+        name: "morte",
+        limite: 159,
+      },
+      {
+        name: "invalidez permanente total",
+        limite: 237,
+      },
+      {
+        name: "doenças críticas",
+        limite: 159,
+      },
+      {
+        name: "diária de incapacidade temporária",
+        limite: 237,
+      },
+      {
+        name: "despesas funerárias individual",
+        limite: 237,
+      },
+    ],
   }),
   methods: {
     decrement() {
@@ -168,12 +190,10 @@ export default {
 
     let foo = taxa.find((el) => el.idade === ref);
     console.log("Idade: " + ref + "   Taxa: " + foo.M);
-    console.log(
-      new Intl.NumberFormat("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      }).format(this.bpm)
-    );
+    this.bpm = new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(this.bpm);
   },
 };
 // 1 - Calculo da cobertura: {{ bpm }}</li>
