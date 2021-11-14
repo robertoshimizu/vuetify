@@ -9,28 +9,31 @@
         </p>
         <v-container>
           <v-row>
-            <v-col cols="6">
+            <v-col cols="12" md="6">
               <v-card class="pa-2 mt-3">
                 <v-toolbar flat dense>
                   <v-toolbar-title>
                     <span class="subheading"
                       >Seu valor de cobertura de vida:</span
                     >
-                    <span class="subheading">{{ vidaCalculado }}</span>
+                    <!-- <span class="subheading">{{ vidaCalculado }}</span> -->
                   </v-toolbar-title>
                   <v-spacer></v-spacer>
-                  <v-btn icon>
+                  <v-btn icon v-on:click="bpm = vidaCalculado">
                     <v-icon>mdi-share-variant</v-icon>
                   </v-btn>
                 </v-toolbar>
                 <v-card-text>
                   <v-row class="mb-4" justify="space-between">
                     <v-col class="text-left">
-                      <span class="subheading font-weight-light mr-1">R$</span
-                      ><span
-                        class="text-h2 font-weight-light"
-                        v-text="bpm"
-                      ></span>
+                      <span class="text-h2 font-weight-light"
+                        >{{
+                          new Intl.NumberFormat("pt-BR", {
+                            style: "currency",
+                            currency: "BRL",
+                          }).format(this.bpm)
+                        }}
+                      </span>
                     </v-col>
                   </v-row>
                 </v-card-text>
@@ -38,6 +41,7 @@
                   v-model="bpm"
                   max="2500000"
                   min="50000"
+                  step="10000"
                   color="teal darken-2"
                   track-color="teal lighten-3"
                   ><template v-slot:prepend>
@@ -50,8 +54,18 @@
                 >
                 <h4>Coberturas básicas:</h4>
                 <ul>
-                  <li>morte natural e acidental</li>
-                  <li>invalidez permanente total</li>
+                  <li>
+                    morte: <span>{{ bpm }}</span>
+                  </li>
+                  <li>
+                    invalidez permanente total:
+                    <span>{{
+                      new Intl.NumberFormat("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                      }).format(this.bpm)
+                    }}</span>
+                  </li>
                 </ul>
                 <h4>Coberturas complementares:</h4>
                 <ul>
@@ -65,83 +79,10 @@
               </v-card>
               <LifeCoverageGraph :coverage="lifeCoverage" class="mt-3" />
             </v-col>
-            <v-col cols="6">
-              <v-card class="pa-2 mt-3">
-                <v-row>
-                  <v-col>
-                    <p>preço</p>
-                    <p>10</p>
-                  </v-col>
-                  <v-col>
-                    <p>duração</p>
-                    <p>10</p>
-                  </v-col>
-                  <v-btn rounded color="error" class="pa-2" dark
-                    >Continuar</v-btn
-                  >
-                </v-row>
-                <v-divider></v-divider>
-                Coberturas
-                <v-row>
-                  <v-col>morte natural e acidental</v-col>
-                  <v-col>invalidez permanente total</v-col>
-                  <v-col>invalidez permanente por doença</v-col>
-                </v-row>
-              </v-card>
-              <v-card class="pa-2 mt-3">
-                <v-row>
-                  <v-col>
-                    <p>preço</p>
-                    <p>10</p>
-                  </v-col>
-                  <v-col>
-                    <p>duração</p>
-                    <p>10</p>
-                  </v-col>
-                  <v-btn rounded color="error" class="pa-2" dark
-                    >Continuar</v-btn
-                  >
-                </v-row>
-                <v-divider></v-divider>
-                Coberturas
-                <v-row>
-                  <v-col>morte natural e acidental</v-col>
-                  <v-col>invalidez permanente total</v-col>
-                  <v-col>invalidez permanente por doença</v-col>
-                </v-row>
-                <v-row>
-                  <v-col>cobertura adicional morte acidental</v-col>
-                  <v-col> </v-col>
-                  <v-col> </v-col>
-                </v-row>
-              </v-card>
-              <v-card class="pa-2 mt-3">
-                <v-row>
-                  <v-col>
-                    <p>preço</p>
-                    <p>10</p>
-                  </v-col>
-                  <v-col>
-                    <p>duração</p>
-                    <p>10</p>
-                  </v-col>
-                  <v-btn rounded color="error" class="pa-2" dark
-                    >Continuar</v-btn
-                  >
-                </v-row>
-                <v-divider></v-divider>
-                Coberturas
-                <v-row>
-                  <v-col>morte natural e acidental</v-col>
-                  <v-col>invalidez permanente total</v-col>
-                  <v-col>invalidez permanente por doença</v-col>
-                </v-row>
-                <v-row>
-                  <v-col>doenças críticas</v-col>
-                  <v-col> </v-col>
-                  <v-col> </v-col>
-                </v-row>
-              </v-card>
+            <v-col cols="12" md="6">
+               <OptionCard />
+                <OptionCard />
+                 <OptionCard />
             </v-col>
           </v-row>
         </v-container>
@@ -153,6 +94,7 @@
 import lifeCoverage from "../data/lifeCoverage.json";
 import LifeCoverageGraph from "../components/LifeCoverageGraph";
 import seguradoraXPTO from "../data/seguradoraXPTO.json";
+import OptionCard from "../components/InsuranceOptionCard.vue";
 
 function custoEduc(renda) {
   if ((renda > 2000) & (renda < 6000)) {
@@ -182,7 +124,10 @@ function coberturaVida(customerData, custoAnual) {
 export default {
   name: "Calculo",
 
-  components: { LifeCoverageGraph },
+  components: {
+    LifeCoverageGraph,
+    OptionCard,
+  },
 
   data: () => ({
     lifeCoverage: lifeCoverage,
@@ -223,6 +168,12 @@ export default {
 
     let foo = taxa.find((el) => el.idade === ref);
     console.log("Idade: " + ref + "   Taxa: " + foo.M);
+    console.log(
+      new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      }).format(this.bpm)
+    );
   },
 };
 // 1 - Calculo da cobertura: {{ bpm }}</li>
