@@ -80,9 +80,9 @@
               <LifeCoverageGraph :coverage="lifeCoverage" class="mt-3" />
             </v-col>
             <v-col cols="12" md="6">
-              <OptionCard />
-              <OptionCard />
-              <OptionCard />
+              <div v-for="option in options" :key="option.index">
+                <OptionCard :product="option" />
+              </div>
             </v-col>
           </v-row>
         </v-container>
@@ -146,6 +146,69 @@ export default {
       dependentes: ["8", "6"],
     },
     coberturas: null,
+    options: [
+      {
+        index: 1,
+        seguradora: "A",
+        duration: "Vitalicio",
+        price: "65",
+        coberturas: ["morte"],
+      },
+      {
+        index: 2,
+        seguradora: "C",
+        duration: "10",
+        price: "143",
+        coberturas: ["morte", "invalidez permanente total"],
+      },
+      {
+        index: 3,
+        seguradora: "A",
+        duration: "Vitalicio",
+        price: "185",
+        coberturas: [
+          "morte",
+          "invalidez permanente total",
+          "despesas funerárias individual",
+        ],
+      },
+      {
+        index: 4,
+        duration: "Vitalicio",
+        price: "202",
+        coberturas: [
+          "morte",
+          "invalidez permanente total",
+          "despesas funerárias individual",
+          "doenças críticas",
+        ],
+      },
+      {
+        index: 5,
+        seguradora: "E",
+        duration: "Vitalicio",
+        price: "253",
+        coberturas: [
+          "morte",
+          "invalidez permanente total",
+          "despesas funerárias individual",
+          "diária de incapacidade temporária",
+        ],
+      },
+      {
+        index: 6,
+        seguradora: "B",
+        duration: "Vitalicio",
+        price: "253",
+        coberturas: [
+          "morte",
+          "invalidez permanente total",
+          "despesas funerárias individual",
+          "diária de incapacidade temporária",
+          "doenças críticas",
+        ],
+      },
+    ],
   }),
   watch: {
     bpm() {

@@ -15,7 +15,7 @@
       </v-col>
       <v-col cols="3">
         <p>duração</p>
-        <p style="font-size: 2rem">
+        <p style="font-size: 1.2rem">
           {{ product.duration }} <span style="font-size: 1rem">anos</span>
         </p>
       </v-col>
@@ -27,13 +27,10 @@
     </v-row>
     <v-divider></v-divider>
     <div style="padding: 1rem">
-      <v-row class="body-2">
-        <v-col>morte natural e acidental</v-col>
-        <v-col>invalidez permanente total</v-col>
-      </v-row>
-      <v-row class="body-2">
-        <v-col>invalidez permanente por doença</v-col>
-        <v-col>cobertura adicional morte acidental</v-col>
+      <v-row class="d-flex flex-row body-2 justify-space-between">
+        <p v-for="(item, index) in product.coberturas" :key="index">
+          {{ item }}
+        </p>
       </v-row>
     </div>
   </v-card>
@@ -42,15 +39,13 @@
 <script>
 export default {
   name: "OptionCard",
-  data: () => ({
+  data: () => ({}),
+  props: {
     product: {
-      price: 125,
-      duration: "10",
+      type: Object,
+      required: true,
     },
-  }),
-  // props: [
-  //     'product'
-  //   ],
+  },
 };
 </script>
 
