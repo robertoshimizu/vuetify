@@ -9,7 +9,7 @@
 //   expect(response.status).toBe(200);
 // });
 
-import SelectProduct from "../model/selectProduct";
+import QuoteGenerator from "../model/selectProduct";
 
 function sumArray(a, b) {
     var c = [];
@@ -20,8 +20,8 @@ function sumArray(a, b) {
 }
 
 test("Instantiate SelectProduct", () => {
-    var select = new SelectProduct(450000,450000,50000,1000,5000);
-    var json = select.getJson();
+    var generator = new QuoteGenerator(450000,450000,50000,1000,5000);
+    var json = generator.getJson();
     // for (let i = 0; i < json.length; i++) {
     //     var seguradora = json[i].seguradora;
     //     console.log(seguradora);
@@ -56,6 +56,17 @@ test("Instantiate SelectProduct", () => {
     // };
 
     // console.log(foo);
+
+  });
+
+  test("Instantiate SelectProduct", () => {
+    var generator = new QuoteGenerator(450000,450000,50000,1000,5000);
+    var rates = generator.getRates();
+    
+    
+    console.log(rates);
+    
+
 
   });
   
