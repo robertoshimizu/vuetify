@@ -95,6 +95,7 @@ import lifeCoverage from "../data/lifeCoverage.json";
 import LifeCoverageGraph from "../components/LifeCoverageGraph";
 import seguradoraXPTO from "../data/seguradoraXPTO.json";
 import OptionCard from "../components/InsuranceOptionCard.vue";
+import QuoteGenerator from "../model/selectProduct.js";
 
 function custoEduc(renda) {
   if ((renda > 2000) & (renda < 6000)) {
@@ -135,6 +136,7 @@ export default {
     bpm: 750000,
     interval: null,
     vidaCalculado: null,
+    generator: null,
     // Receber via prop do componente anterior - questions.vue
     customerData: {
       nome: "John Doe",
@@ -212,7 +214,7 @@ export default {
   }),
   watch: {
     bpm() {
-      this.recalculo(this.bpm);
+      this.recalculo(this.bpm, this.bpm, 50000, 1000, 5000);
     },
   },
   methods: {
@@ -222,7 +224,7 @@ export default {
     increment() {
       this.bpm++;
     },
-    recalculo(vida) {
+    recalculo(morte, ipa, dg, dit, saf) {
       const coverages = [
         "morte",
         "invalidez permanente total",
@@ -238,23 +240,23 @@ export default {
         obj["name"] = coverages[i];
         switch (expr) {
           case "morte":
-            obj["limite"] = vida;
+            obj["limite"] = morte;
             arreio.push(obj);
             break;
           case "invalidez permanente total":
-            obj["limite"] = vida;
+            obj["limite"] = ipa;
             arreio.push(obj);
             break;
           case "doenças críticas":
-            obj["limite"] = 50000;
+            obj["limite"] = dg;
             arreio.push(obj);
             break;
           case "diária de incapacidade temporária":
-            obj["limite"] = 1000;
+            obj["limite"] = dit;
             arreio.push(obj);
             break;
           case "despesas funerárias individual":
-            obj["limite"] = 5000;
+            obj["limite"] = saf;
             arreio.push(obj);
             break;
           default:
@@ -262,6 +264,7 @@ export default {
         }
       }
       this.coberturas = arreio;
+      this.options = this.generator.getRates(morte, ipa, dg, dit, saf);
     },
   },
   created() {
@@ -278,7 +281,8 @@ export default {
 
     let foo = taxa.find((el) => el.idade === ref);
     console.log("Idade: " + ref + "   Taxa: " + foo.M);
-    this.recalculo(this.bpm);
+    this.generator = new QuoteGenerator();
+    this.recalculo(this.bpm, this.bpm, 50000, 1000, 5000);
   },
 };
 // 1 - Calculo da cobertura: {{ bpm }}</li>
