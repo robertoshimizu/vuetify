@@ -78,6 +78,122 @@
                 </v-simple-table>
               </v-card>
               <LifeCoverageGraph :coverage="lifeCoverage" class="mt-3" />
+              <h3>Tabela Alternativa</h3>
+              <v-card>
+                <v-row>
+                  <v-col cols="6" align-self="center" class="text-left"
+                    >morte</v-col
+                  >
+                  <v-col cols="6">
+                    <div class="font-weight-light text-center text-caption">
+                      {{
+                        new Intl.NumberFormat("pt-BR", {
+                          style: "currency",
+                          currency: "BRL",
+                        }).format(this.bpm)
+                      }}
+                    </div>
+                    <v-slider
+                      v-model="bpm"
+                      max="2500000"
+                      min="50000"
+                      step="10000"
+                      color="teal darken-2"
+                      track-color="teal lighten-3"
+                      ><template v-slot:prepend>
+                        <v-icon @click="decrement"> mdi-minus </v-icon>
+                      </template>
+
+                      <template v-slot:append>
+                        <v-icon @click="increment"> mdi-plus </v-icon>
+                      </template></v-slider
+                    >
+                  </v-col>
+                </v-row>
+              </v-card>
+              <v-card>
+                <v-row>
+                  <v-col cols="6" align-self="center" class="text-left"
+                    >invalidez permanente total</v-col
+                  >
+                  <v-col cols="6">
+                    <div class="font-weight-light text-center text-caption">
+                      {{
+                        new Intl.NumberFormat("pt-BR", {
+                          style: "currency",
+                          currency: "BRL",
+                        }).format(this.bpm)
+                      }}
+                    </div>
+                    <v-slider
+                      v-model="bpm"
+                      max="2500000"
+                      min="50000"
+                      step="10000"
+                      color="teal darken-2"
+                      track-color="teal lighten-3"
+                      ><template v-slot:prepend>
+                        <v-icon @click="decrement"> mdi-minus </v-icon>
+                      </template>
+
+                      <template v-slot:append>
+                        <v-icon @click="increment"> mdi-plus </v-icon>
+                      </template></v-slider
+                    >
+                  </v-col>
+                </v-row>
+              </v-card>
+              <v-card>
+                <v-row>
+                  <v-col cols="7" align-self="center" class="text-left"
+                    >doenças críticas</v-col
+                  >
+                  <v-col cols="5">
+                    <v-select
+                      v-model="dg1"
+                      :items="dgs"
+                      solo
+                      menu-props="auto"
+                      hide-details
+                      single-line
+                    ></v-select>
+                  </v-col>
+                </v-row>
+              </v-card>
+              <v-card>
+                <v-row>
+                  <v-col cols="7" align-self="center" class="text-left"
+                    >diária de incapacidade temporária</v-col
+                  >
+                  <v-col cols="5">
+                    <v-select
+                      v-model="dit1"
+                      :items="dits"
+                      solo
+                      menu-props="auto"
+                      hide-details
+                      single-line
+                    ></v-select>
+                  </v-col>
+                </v-row>
+              </v-card>
+              <v-card>
+                <v-row>
+                  <v-col cols="7" align-self="center" class="text-left"
+                    >despesas funerárias individual</v-col
+                  >
+                  <v-col cols="5">
+                    <v-select
+                      v-model="saf1"
+                      :items="safs"
+                      solo
+                      menu-props="auto"
+                      hide-details
+                      single-line
+                    ></v-select>
+                  </v-col>
+                </v-row>
+              </v-card>
             </v-col>
             <v-col cols="12" md="6">
               <div v-for="option in options" :key="option.index">
@@ -148,69 +264,20 @@ export default {
       dependentes: ["8", "6"],
     },
     coberturas: null,
-    options: [
-      {
-        index: 1,
-        seguradora: "A",
-        duration: "Vitalicio",
-        price: 65,
-        coberturas: ["morte"],
-      },
-      {
-        index: 2,
-        seguradora: "C",
-        duration: "10",
-        price: 143,
-        coberturas: ["morte", "invalidez permanente total"],
-      },
-      {
-        index: 3,
-        seguradora: "A",
-        duration: "Vitalicio",
-        price: 185,
-        coberturas: [
-          "morte",
-          "invalidez permanente total",
-          "despesas funerárias individual",
-        ],
-      },
-      {
-        index: 4,
-        duration: "Vitalicio",
-        price: 202,
-        coberturas: [
-          "morte",
-          "invalidez permanente total",
-          "despesas funerárias individual",
-          "doenças críticas",
-        ],
-      },
-      {
-        index: 5,
-        seguradora: "E",
-        duration: "Vitalicio",
-        price: 253,
-        coberturas: [
-          "morte",
-          "invalidez permanente total",
-          "despesas funerárias individual",
-          "diária de incapacidade temporária",
-        ],
-      },
-      {
-        index: 6,
-        seguradora: "B",
-        duration: "Vitalicio",
-        price: 305,
-        coberturas: [
-          "morte",
-          "invalidez permanente total",
-          "despesas funerárias individual",
-          "diária de incapacidade temporária",
-          "doenças críticas",
-        ],
-      },
+    options: null,
+    dg1: "R$ 100.000,00",
+    dgs: [
+      "R$ 50.000,00",
+      "R$ 100.000,00",
+      "R$ 150.000,00",
+      "R$ 200.000,00",
+      "R$ 250.000,00",
+      "R$ 300.000,00",
     ],
+    dit1: "R$ 1.000,00",
+    dits: ["R$ 500,00", "R$ 1.000,00", "R$ 1.500,00", "R$ 2.000,00"],
+    saf1: "R$ 5.000,00",
+    safs: ["R$ 5.000,00", "R$ 10.000,00"],
   }),
   watch: {
     bpm() {
