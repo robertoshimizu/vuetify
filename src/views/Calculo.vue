@@ -19,7 +19,7 @@
                     <!-- <span class="subheading">{{ vidaCalculado }}</span> -->
                   </v-toolbar-title>
                   <v-spacer></v-spacer>
-                  <v-btn icon v-on:click="bpm = vidaCalculado">
+                  <v-btn icon v-on:click="vida = vidaCalculado">
                     <v-icon>mdi-share-variant</v-icon>
                   </v-btn>
                 </v-toolbar>
@@ -31,29 +31,29 @@
                           new Intl.NumberFormat("pt-BR", {
                             style: "currency",
                             currency: "BRL",
-                          }).format(this.bpm)
+                          }).format(this.vida)
                         }}
                       </span>
                     </v-col>
                   </v-row>
                 </v-card-text>
                 <v-slider
-                  v-model="bpm"
+                  v-model="vida"
                   max="2500000"
                   min="50000"
                   step="10000"
                   color="teal darken-2"
                   track-color="teal lighten-3"
                   ><template v-slot:prepend>
-                    <v-icon @click="decrement"> mdi-minus </v-icon>
+                    <v-icon @click="decrement_vida"> mdi-minus </v-icon>
                   </template>
 
                   <template v-slot:append>
-                    <v-icon @click="increment"> mdi-plus </v-icon>
+                    <v-icon @click="increment_vida"> mdi-plus </v-icon>
                   </template></v-slider
                 >
 
-                <v-simple-table dense>
+                <!-- <v-simple-table dense>
                   <template v-slot:default>
                     <thead>
                       <tr>
@@ -75,11 +75,11 @@
                       </tr>
                     </tbody>
                   </template>
-                </v-simple-table>
+                </v-simple-table> -->
               </v-card>
-              <LifeCoverageGraph :coverage="lifeCoverage" class="mt-3" />
-              <h3>Tabela Alternativa</h3>
-              <v-card>
+              
+              
+              <!-- <v-card>
                 <v-row>
                   <v-col cols="6" align-self="center" class="text-left"
                     >morte</v-col
@@ -110,7 +110,7 @@
                     >
                   </v-col>
                 </v-row>
-              </v-card>
+              </v-card> -->
               <v-card>
                 <v-row>
                   <v-col cols="6" align-self="center" class="text-left"
@@ -122,22 +122,22 @@
                         new Intl.NumberFormat("pt-BR", {
                           style: "currency",
                           currency: "BRL",
-                        }).format(this.bpm)
+                        }).format(this.ipa)
                       }}
                     </div>
                     <v-slider
-                      v-model="bpm"
+                      v-model="ipa"
                       max="2500000"
                       min="50000"
                       step="10000"
                       color="teal darken-2"
                       track-color="teal lighten-3"
                       ><template v-slot:prepend>
-                        <v-icon @click="decrement"> mdi-minus </v-icon>
+                        <v-icon @click="decrement_ipa"> mdi-minus </v-icon>
                       </template>
 
                       <template v-slot:append>
-                        <v-icon @click="increment"> mdi-plus </v-icon>
+                        <v-icon @click="increment_ipa"> mdi-plus </v-icon>
                       </template></v-slider
                     >
                   </v-col>
@@ -194,13 +194,16 @@
                   </v-col>
                 </v-row>
               </v-card>
+              <LifeCoverageGraph :coverage="lifeCoverage" class="mt-3" />
             </v-col>
             <v-col cols="12" md="6">
               <div v-for="option in options" :key="option.index">
                 <OptionCard :product="option" />
               </div>
             </v-col>
+                    
           </v-row>
+  
         </v-container>
       </v-container>
     </section>
@@ -223,7 +226,7 @@ function custoEduc(renda) {
   } else return null;
 }
 
-function coberturaVida(customerData, custoAnual) {
+function coberturasSugeridas(customerData, custoAnual) {
   const profiles = customerData.profile;
   let coberturaVida = 0;
   if (profiles.includes("dependentes")) {
@@ -232,10 +235,31 @@ function coberturaVida(customerData, custoAnual) {
       dependentes.forEach((dep) => {
         coberturaVida = coberturaVida + (23 - parseInt(dep)) * custoAnual;
       });
-      return coberturaVida;
+      return { 
+        vida: parseInt(coberturaVida), 
+        ipa: parseInt(coberturaVida),
+        dg: 50000,
+        dit: 1000,
+        saf: 5000 
+        };
     }
-    return parseInt(customerData.renda) * 24;
-  } else return parseInt(customerData.renda) * 24;
+    return { 
+        vida: parseInt(customerData.renda) * 24, 
+        ipa: parseInt(customerData.renda) * 24,
+        dg: 50000,
+        dit: 1000,
+        saf: 5000 
+        };
+    
+    
+    
+  } else return { 
+        vida: parseInt(customerData.renda) * 24, 
+        ipa: parseInt(customerData.renda) * 24,
+        dg: 50000,
+        dit: 1000,
+        saf: 5000 
+        };
 }
 
 export default {
@@ -249,7 +273,8 @@ export default {
   data: () => ({
     lifeCoverage: lifeCoverage,
     tabelaSeg: seguradoraXPTO,
-    bpm: 750000,
+    vida: null,
+    ipa: null,
     interval: null,
     vidaCalculado: null,
     generator: null,
@@ -280,16 +305,25 @@ export default {
     safs: ["R$ 5.000,00", "R$ 10.000,00"],
   }),
   watch: {
-    bpm() {
-      this.recalculo(this.bpm, this.bpm, 50000, 1000, 5000);
+    vida() {
+      this.recalculo(this.vida, this.ipa, 50000, 1000, 5000);
+    },
+    ipa() {
+      this.recalculo(this.vida, this.ipa, 50000, 1000, 5000);
     },
   },
   methods: {
-    decrement() {
-      this.bpm--;
+    decrement_vida() {
+      this.vida--;
     },
-    increment() {
-      this.bpm++;
+    increment_vida() {
+      this.vida++;
+    },
+    decrement_ipa() {
+      this.ipa--;
+    },
+    increment_ipa() {
+      this.ipa++;
     },
     recalculo(morte, ipa, dg, dit, saf) {
       const coverages = [
@@ -339,8 +373,15 @@ export default {
     const renda = parseInt(this.customerData.renda);
 
     const custoAnual = custoEduc(renda);
-    this.bpm = coberturaVida(this.customerData, custoAnual);
-    this.vidaCalculado = this.bpm;
+    var { vida,ipa,dg,dit,saf } = coberturasSugeridas(this.customerData, custoAnual);
+    this.vida = vida;
+    this.ipa = ipa;
+    this.dg = dg;
+    this.dit = dit;
+    this.saf = saf;
+    this.vidaCalculado = this.vida;
+
+    console.log(vida);
 
     // gerar um csv ou json com dados para plotar grafico
     let taxa = this.tabelaSeg[0].taxas;
@@ -349,7 +390,7 @@ export default {
     let foo = taxa.find((el) => el.idade === ref);
     console.log("Idade: " + ref + "   Taxa: " + foo.M);
     this.generator = new QuoteGenerator();
-    this.recalculo(this.bpm, this.bpm, 50000, 1000, 5000);
+    this.recalculo(this.vida, this.ipa, 50000, 1000, 5000);
   },
 };
 // 1 - Calculo da cobertura: {{ bpm }}</li>
