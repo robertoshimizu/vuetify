@@ -150,7 +150,7 @@
                   >
                   <v-col cols="5">
                     <v-select
-                      v-model="dg1"
+                      v-model="dg"
                       :items="dgs"
                       solo
                       menu-props="auto"
@@ -167,7 +167,7 @@
                   >
                   <v-col cols="5">
                     <v-select
-                      v-model="dit1"
+                      v-model="dit"
                       :items="dits"
                       solo
                       menu-props="auto"
@@ -184,7 +184,7 @@
                   >
                   <v-col cols="5">
                     <v-select
-                      v-model="saf1"
+                      v-model="saf"
                       :items="safs"
                       solo
                       menu-props="auto"
@@ -290,26 +290,30 @@ export default {
     },
     coberturas: null,
     options: null,
-    dg1: "R$ 100.000,00",
+    dg:null,
     dgs: [
-      "R$ 50.000,00",
-      "R$ 100.000,00",
-      "R$ 150.000,00",
-      "R$ 200.000,00",
-      "R$ 250.000,00",
-      "R$ 300.000,00",
+      50000,100000,150000,200000,250000, 300000
     ],
-    dit1: "R$ 1.000,00",
-    dits: ["R$ 500,00", "R$ 1.000,00", "R$ 1.500,00", "R$ 2.000,00"],
-    saf1: "R$ 5.000,00",
-    safs: ["R$ 5.000,00", "R$ 10.000,00"],
+    dit: null,
+    dits: [500, 1000, 1500, 2000],
+    saf: 5000,
+    safs: [5000, 10000],
   }),
   watch: {
     vida() {
-      this.recalculo(this.vida, this.ipa, 50000, 1000, 5000);
+      this.recalculo(this.vida, this.ipa, this.dg, this.dit, this.saf);
     },
     ipa() {
-      this.recalculo(this.vida, this.ipa, 50000, 1000, 5000);
+      this.recalculo(this.vida, this.ipa, this.dg, this.dit, this.saf);
+    },
+    dg() {
+      this.recalculo(this.vida, this.ipa, this.dg, this.dit, this.saf);
+    },
+    dit() {
+      this.recalculo(this.vida, this.ipa, this.dg, this.dit, this.saf);
+    },
+    saf() {
+      this.recalculo(this.vida, this.ipa, this.dg, this.dit, this.saf);
     },
   },
   methods: {
@@ -390,7 +394,7 @@ export default {
     let foo = taxa.find((el) => el.idade === ref);
     console.log("Idade: " + ref + "   Taxa: " + foo.M);
     this.generator = new QuoteGenerator();
-    this.recalculo(this.vida, this.ipa, 50000, 1000, 5000);
+    this.recalculo(this.vida, this.ipa, this.dg, this.dit, this.saf);
   },
 };
 // 1 - Calculo da cobertura: {{ bpm }}</li>
